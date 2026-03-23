@@ -8,11 +8,10 @@
 body{
   margin:0;
   font-family:Arial;
-  background: linear-gradient(135deg,#000,#0f2027,#2c5364);
+  background:linear-gradient(135deg,#000,#1a1a2e,#16213e);
   color:#fff;
 }
 
-/* TOP */
 .top{
   padding:10px;
   display:flex;
@@ -20,15 +19,12 @@ body{
   background:#000;
 }
 
-/* SLIDER */
 .slider{
-  padding:12px;
+  padding:10px;
   text-align:center;
-  background: linear-gradient(45deg,#ff0055,#ff9900);
-  font-weight:bold;
+  background:linear-gradient(45deg,#ff0057,#ff7b00);
 }
 
-/* GRID */
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -37,50 +33,21 @@ body{
 }
 
 .card{
-  background:rgba(0,0,0,0.7);
+  background:#111;
   padding:15px;
-  border-radius:12px;
+  border-radius:10px;
   text-align:center;
-  box-shadow:0 0 15px #00ffcc;
-  transition:0.3s;
-}
-
-.card:active{
-  transform:scale(0.95);
 }
 
 button{
-  margin-top:10px;
   padding:8px;
+  width:100%;
+  margin-top:5px;
+  background:#00ffcc;
   border:none;
   border-radius:5px;
-  background:#00ffcc;
-  width:100%;
 }
 
-/* GAME POPUP */
-.gameBox{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#000;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-}
-
-.close{
-  position:absolute;
-  top:10px;
-  right:15px;
-  font-size:20px;
-  cursor:pointer;
-}
-
-/* bottom nav */
 .bottom{
   position:fixed;
   bottom:0;
@@ -93,13 +60,53 @@ button{
 </style>
 
 <script>
-function openGame(name){
-  document.getElementById("gameBox").style.display="flex";
-  document.getElementById("gname").innerText=name;
+let user = localStorage.getItem("currentUser");
+let bal = localStorage.getItem(user+"_bal") || 0;
+
+function update(){
+  document.getElementById("bal").innerText=bal;
+}
+window.onload=update;
+
+function logout(){
+  window.location="index.html";
 }
 
-function closeGame(){
-  document.getElementById("gameBox").style.display="none";
+function deposit(){
+  let amt=prompt("Enter Amount");
+  localStorage.setItem("deposit_"+user,amt);
+  alert("Request Sent");
+}
+
+function withdraw(){
+  let amt=prompt("Enter Amount");
+  localStorage.setItem("withdraw_"+user,amt);
+  alert("Withdraw Request Sent");
+}
+
+/* GAME SYSTEM */
+function play(type){
+  let r=Math.random();
+
+  if(type=="aviator"){
+    r>0.5 ? updateBal(20,"🚀 Win ₹20") : updateBal(-10,"💥 Crash Lose ₹10");
+  }
+  if(type=="dragon"){
+    r>0.5 ? updateBal(15,"🐉 Win ₹15") : updateBal(-10,"🐯 Lose ₹10");
+  }
+  if(type=="chicken"){
+    r>0.5 ? updateBal(10,"🐔 Win ₹10") : updateBal(-5,"Lose ₹5");
+  }
+  if(type=="chicken2"){
+    r>0.5 ? updateBal(12,"🐔2 Win ₹12") : updateBal(-6,"Lose ₹6");
+  }
+}
+
+function updateBal(a,msg){
+  bal = Number(bal)+a;
+  localStorage.setItem(user+"_bal",bal);
+  update();
+  alert(msg);
 }
 </script>
 
@@ -108,67 +115,28 @@ function closeGame(){
 <body>
 
 <div class="top">
-<div>💰 Balance: 0</div>
-<div>⚙</div>
+<div>💰 Balance: ₹<span id="bal">0</span></div>
+<div onclick="logout()">Logout</div>
 </div>
 
-<div class="slider">🔥 Fast Withdraw | 🎮 Play & Win</div>
+<div class="slider">🔥 Fast Withdraw</div>
+
+<button onclick="deposit()">💸 Deposit</button>
+<button onclick="withdraw()">💵 Withdraw</button>
 
 <div class="grid">
 
-<div class="card">
-Teen Patti
-<button onclick="openGame('Teen Patti')">Play</button>
-</div>
+<div class="card">Aviator<button onclick="play('aviator')">Play</button></div>
+<div class="card">Dragon vs Tiger<button onclick="play('dragon')">Play</button></div>
+<div class="card">Chicken Road<button onclick="play('chicken')">Play</button></div>
+<div class="card">Chicken Road 2<button onclick="play('chicken2')">Play</button></div>
 
-<div class="card">
-Andar Bahar
-<button onclick="openGame('Andar Bahar')">Play</button>
-</div>
-
-<div class="card">
-Roulette
-<button onclick="openGame('Roulette')">Play</button>
-</div>
-
-<div class="card">
-Cricket
-<button onclick="openGame('Cricket')">Play</button>
-</div>
-
-<div class="card">
-Aviator ✈
-<button onclick="openGame('Aviator')">Play</button>
-</div>
-
-<div class="card">
-Dragon vs Tiger 🐉
-<button onclick="openGame('Dragon vs Tiger')">Play</button>
-</div>
-
-<div class="card">
-Chicken Road 🐔
-<button onclick="openGame('Chicken Road')">Play</button>
-</div>
-
-<div class="card">
-Chicken Road 2 🐔
-<button onclick="openGame('Chicken Road 2')">Play</button>
-</div>
-
-</div>
-
-<!-- GAME SCREEN -->
-<div class="gameBox" id="gameBox">
-<div class="close" onclick="closeGame()">❌</div>
-<h2 id="gname"></h2>
-<p>Game Loading...</p>
 </div>
 
 <div class="bottom">
 <div>🏠 Home</div>
 <div>🎮 Games</div>
-<div>💵 Cashout</div>
+<div>💰 Cashout</div>
 <div>👤 Account</div>
 </div>
 
