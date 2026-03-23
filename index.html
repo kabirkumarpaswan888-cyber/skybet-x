@@ -2,49 +2,84 @@
 <html>
 <head>
   <title>SkyBet X</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(270deg, #000, #111, #000);
+      background-size: 600% 600%;
+      animation: bgMove 8s infinite;
+      font-family: Arial;
+    }
+
+    @keyframes bgMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .box {
+      background: rgba(255,255,255,0.05);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      text-align: center;
+      box-shadow: 0 0 20px #000;
+    }
+
+    h2 {
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    input {
+      display: block;
+      width: 220px;
+      padding: 10px;
+      margin: 10px auto;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      background: gold;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="loginPage">
-  <h1>🚀 SkyBet X</h1>
-  <input type="text" id="username" placeholder="Username"><br>
-  <input type="password" id="password" placeholder="Password"><br>
+<div class="box">
+  <h2>🚀 SkyBet X</h2>
+  <input type="text" id="user" placeholder="Username">
+  <input type="password" id="pass" placeholder="Password">
   <button onclick="login()">LOGIN</button>
 </div>
 
-<div id="app" style="display:none;">
+<script>
+function login(){
+  let u = document.getElementById("user").value;
+  let p = document.getElementById("pass").value;
 
-  <h2>Welcome Player 💎</h2>
-  <p>Balance: ₹<span id="balance">1000</span></p>
-
-  <div class="grid">
-    <div class="card" onclick="openGame()">
-      <img src="https://i.imgur.com/8Km9tLL.jpg">
-      <p>Aviator</p>
-    </div>
-
-    <div class="card">
-      <img src="https://i.imgur.com/jQ9Z1Zm.jpg">
-      <p>Teen Patti</p>
-    </div>
-  </div>
-
-  <div id="game" style="display:none;">
-    <canvas id="graph" width="300" height="200"></canvas>
-    <h2 id="multiplier">1.00x</h2>
-
-    <input type="number" id="betAmount" placeholder="Enter Bet"><br>
-
-    <button onclick="startGame()">BET</button>
-    <button onclick="cashOut()">CASH OUT</button>
-
-    <div id="players"></div>
-  </div>
-
-</div>
-
-<script src="script.js"></script>
+  if(u === "admin" && p === "1234"){
+    window.location.href = "home.html";
+  } else {
+    alert("Wrong Login ❌");
+  }
+}
+</script>
 
 </body>
-      </html>
+</html>
