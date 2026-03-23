@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>SkyBet X</title>
-<link rel="stylesheet" href="style.css">
+  <title>SkyBet X</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>🚀 SkyBet X</h1>
-<p>Balance: <span id="balance">1000</span></p>
+  <h1>🚀 SkyBet X</h1>
 
-<input type="number" id="betAmount" placeholder="Enter bet" />
-<button onclick="startGame()">BET</button>
+  <p>Balance: ₹<span id="balance">1000</span></p>
 
-<div id="gameBox">
-    <h2 id="multiplier">1.00x</h2>
-</div>
+  <input type="number" id="betAmount" placeholder="Enter Bet Amount">
+  <br>
 
-<button onclick="cashOut()">CASH OUT</button>
+  <button onclick="startGame()">BET</button>
 
-<script src="script.js"></script>
+  <h2 id="multiplier">1.00x</h2>
+
+  <button onclick="cashOut()">CASH OUT</button>
+
+  <br><br>
+
+  <button onclick="addMoney()">Add ₹500</button>
+
+  <script src="script.js"></script>
+
 </body>
 </html>
