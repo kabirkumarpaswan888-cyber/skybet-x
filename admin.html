@@ -11,44 +11,50 @@ body{
   font-family:Arial;
 }
 button{
-  padding:10px;
+  padding:12px;
   margin:10px;
+  width:80%;
   background:#00ffcc;
   border:none;
 }
 </style>
 
 <script>
-function approveDeposit(){
-  let user = prompt("Username?");
-  let amt = localStorage.getItem("deposit_"+user);
+function depositApprove(){
+  let u=prompt("Username");
+  let amt=localStorage.getItem("deposit_"+u);
 
-  let bal = localStorage.getItem(user+"_bal") || 0;
-  bal = Number(bal)+Number(amt);
+  let bal=localStorage.getItem(u+"_bal")||0;
+  bal=Number(bal)+Number(amt);
 
-  localStorage.setItem(user+"_bal",bal);
-  alert("Deposit Approved ✅");
+  localStorage.setItem(u+"_bal",bal);
+  localStorage.removeItem("deposit_"+u);
+
+  alert("Deposit Approved");
 }
 
-function approveWithdraw(){
-  let user = prompt("Username?");
-  let amt = localStorage.getItem("withdraw_"+user);
+function withdrawApprove(){
+  let u=prompt("Username");
+  let amt=localStorage.getItem("withdraw_"+u);
 
-  let bal = localStorage.getItem(user+"_bal") || 0;
-  bal -= amt;
+  let bal=localStorage.getItem(u+"_bal")||0;
+  bal=Number(bal)-Number(amt);
 
-  localStorage.setItem(user+"_bal",bal);
-  alert("Withdraw Approved ✅");
+  localStorage.setItem(u+"_bal",bal);
+  localStorage.removeItem("withdraw_"+u);
+
+  alert("Withdraw Approved");
 }
 </script>
 
 </head>
+
 <body>
 
-<h2>Admin Panel</h2>
+<h2>👨‍💼 Admin Panel</h2>
 
-<button onclick="approveDeposit()">Approve Deposit</button>
-<button onclick="approveWithdraw()">Approve Withdraw</button>
+<button onclick="depositApprove()">Approve Deposit</button>
+<button onclick="withdrawApprove()">Approve Withdraw</button>
 
 </body>
 </html>
