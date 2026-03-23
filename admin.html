@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin</title>
+
+<style>
+body{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  font-family:Arial;
+}
+button{
+  padding:10px;
+  margin:10px;
+  background:#00ffcc;
+  border:none;
+}
+</style>
+
+<script>
+function approveDeposit(){
+  let user = prompt("Username?");
+  let amt = localStorage.getItem("deposit_"+user);
+
+  let bal = localStorage.getItem(user+"_bal") || 0;
+  bal = Number(bal)+Number(amt);
+
+  localStorage.setItem(user+"_bal",bal);
+  alert("Deposit Approved ✅");
+}
+
+function approveWithdraw(){
+  let user = prompt("Username?");
+  let amt = localStorage.getItem("withdraw_"+user);
+
+  let bal = localStorage.getItem(user+"_bal") || 0;
+  bal -= amt;
+
+  localStorage.setItem(user+"_bal",bal);
+  alert("Withdraw Approved ✅");
+}
+</script>
+
+</head>
+<body>
+
+<h2>Admin Panel</h2>
+
+<button onclick="approveDeposit()">Approve Deposit</button>
+<button onclick="approveWithdraw()">Approve Withdraw</button>
+
+</body>
+</html>
