@@ -1,85 +1,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SkyBet X</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(270deg, #000, #111, #000);
-      background-size: 600% 600%;
-      animation: bgMove 8s infinite;
-      font-family: Arial;
-    }
+<title>SkyBet X</title>
 
-    @keyframes bgMove {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#000;
+  color:#fff;
+}
 
-    .box {
-      background: rgba(255,255,255,0.05);
-      padding: 30px;
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-      text-align: center;
-      box-shadow: 0 0 20px #000;
-    }
+.box{
+  width:300px;
+  margin:100px auto;
+  background:#111;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  box-shadow:0 0 20px #00ffcc;
+}
 
-    h2 {
-      color: white;
-      margin-bottom: 20px;
-    }
+input{
+  width:90%;
+  padding:10px;
+  margin:8px;
+  border:none;
+  border-radius:5px;
+}
 
-    input {
-      display: block;
-      width: 220px;
-      padding: 10px;
-      margin: 10px auto;
-      border: none;
-      border-radius: 5px;
-    }
+button{
+  padding:10px;
+  border:none;
+  background:#00ffcc;
+  border-radius:5px;
+  width:100%;
+}
 
-    button {
-      background: gold;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+a{
+  color:#00ffcc;
+  cursor:pointer;
+}
+</style>
 
-    button:hover {
-      transform: scale(1.1);
-    }
-  </style>
+<script>
+function showRegister(){
+  document.getElementById("login").style.display="none";
+  document.getElementById("register").style.display="block";
+}
+
+function showLogin(){
+  document.getElementById("login").style.display="block";
+  document.getElementById("register").style.display="none";
+}
+
+function register(){
+  let u=document.getElementById("ru").value;
+  let p=document.getElementById("rp").value;
+
+  localStorage.setItem("user",u);
+  localStorage.setItem("pass",p);
+
+  alert("Registered Successfully");
+  showLogin();
+}
+
+function login(){
+  let u=document.getElementById("lu").value;
+  let p=document.getElementById("lp").value;
+
+  let su=localStorage.getItem("user");
+  let sp=localStorage.getItem("pass");
+
+  if(u==su && p==sp){
+    window.location="home.html";
+  }else{
+    alert("Wrong Login");
+  }
+}
+</script>
+
 </head>
 
 <body>
 
-<div class="box">
-  <h2>🚀 SkyBet X</h2>
-  <input type="text" id="user" placeholder="Username">
-  <input type="password" id="pass" placeholder="Password">
-  <button onclick="login()">LOGIN</button>
+<!-- LOGIN -->
+<div class="box" id="login">
+<h2>Login</h2>
+
+<input id="lu" placeholder="Username"><br>
+<input id="lp" type="password" placeholder="Password"><br>
+
+<button onclick="login()">Login</button>
+
+<p>New user? <a onclick="showRegister()">Register</a></p>
 </div>
 
-<script>
-function login(){
-  let u = document.getElementById("user").value;
-  let p = document.getElementById("pass").value;
+<!-- REGISTER -->
+<div class="box" id="register" style="display:none;">
+<h2>Register</h2>
 
-  if(u === "admin" && p === "1234"){
-    window.location.href = "home.html";
-  } else {
-    alert("Wrong Login ❌");
-  }
-}
-</script>
+<input id="ru" placeholder="Username"><br>
+<input id="rp" type="password" placeholder="Password"><br>
+
+<button onclick="register()">Register</button>
+
+<p>Already account? <a onclick="showLogin()">Login</a></p>
+</div>
 
 </body>
 </html>
