@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+    }
+
+    h1 {
+      padding: 20px;
+    }
+
+    .games {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: 150px;
+      margin: 15px;
+      padding: 10px;
+      background: #111;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #000;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.1);
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 8px;
+      border: none;
+      background: gold;
+      cursor: pointer;
+    }
+
+    .cashout {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🎮 SkyBet X Games</h1>
+
+<div class="games">
+
+  <div class="card">
+    <img src="https://via.placeholder.com/150">
+    <p>Game 1</p>
+    <button onclick="play()">Play</button>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/150">
+    <p>Game 2</p>
+    <button onclick="play()">Play</button>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/150">
+    <p>Game 3</p>
+    <button onclick="play()">Play</button>
+  </div>
+
+</div>
+
+<div class="cashout">
+  <h2>💰 Balance: ₹1000</h2>
+  <button onclick="cashout()">Cash Out</button>
+</div>
+
+<script>
+function play(){
+  alert("Game Start 🎮");
+}
+
+function cashout(){
+  alert("Cashout Successful 💸");
+}
+</script>
+
+</body>
+</html>
