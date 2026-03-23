@@ -6,24 +6,45 @@
 </head>
 <body>
 
+<div id="loginPage">
   <h1>🚀 SkyBet X</h1>
+  <input type="text" id="username" placeholder="Username"><br>
+  <input type="password" id="password" placeholder="Password"><br>
+  <button onclick="login()">LOGIN</button>
+</div>
 
+<div id="app" style="display:none;">
+
+  <h2>Welcome Player 💎</h2>
   <p>Balance: ₹<span id="balance">1000</span></p>
 
-  <input type="number" id="betAmount" placeholder="Enter Bet Amount">
-  <br>
+  <div class="grid">
+    <div class="card" onclick="openGame()">
+      <img src="https://i.imgur.com/8Km9tLL.jpg">
+      <p>Aviator</p>
+    </div>
 
-  <button onclick="startGame()">BET</button>
+    <div class="card">
+      <img src="https://i.imgur.com/jQ9Z1Zm.jpg">
+      <p>Teen Patti</p>
+    </div>
+  </div>
 
-  <h2 id="multiplier">1.00x</h2>
+  <div id="game" style="display:none;">
+    <canvas id="graph" width="300" height="200"></canvas>
+    <h2 id="multiplier">1.00x</h2>
 
-  <button onclick="cashOut()">CASH OUT</button>
+    <input type="number" id="betAmount" placeholder="Enter Bet"><br>
 
-  <br><br>
+    <button onclick="startGame()">BET</button>
+    <button onclick="cashOut()">CASH OUT</button>
 
-  <button onclick="addMoney()">Add ₹500</button>
+    <div id="players"></div>
+  </div>
 
-  <script src="script.js"></script>
+</div>
+
+<script src="script.js"></script>
 
 </body>
-</html>
+      </html>
