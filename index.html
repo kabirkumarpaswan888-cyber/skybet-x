@@ -6,67 +6,72 @@
 
 <style>
 body{
-  background:linear-gradient(135deg,#000,#0f2027,#2c5364);
-  color:#fff;
-  text-align:center;
+  margin:0;
   font-family:Arial;
+  background:linear-gradient(135deg,#000,#0f2027,#2c5364);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
 }
+
 .box{
-  margin-top:100px;
+  background:#111;
+  padding:30px;
+  border-radius:15px;
+  text-align:center;
 }
+
 input{
-  padding:12px;
+  padding:10px;
   margin:10px;
-  width:80%;
+  width:200px;
   border:none;
   border-radius:5px;
 }
+
 button{
-  padding:12px;
-  width:85%;
-  margin:5px;
-  background:#00ffcc;
+  padding:10px;
+  width:220px;
+  background:#00ff99;
   border:none;
   border-radius:5px;
 }
 </style>
-
-<script>
-function register(){
-  let u=user.value;
-  let p=pass.value;
-
-  localStorage.setItem(u,p);
-  localStorage.setItem(u+"_bal",0);
-
-  alert("Registered ✅");
-}
-
-function login(){
-  let u=user.value;
-  let p=pass.value;
-
-  if(localStorage.getItem(u)==p){
-    localStorage.setItem("currentUser",u);
-    window.location="home.html";
-  }else{
-    alert("Wrong ❌");
-  }
-}
-</script>
-
 </head>
+
 <body>
 
 <div class="box">
 <h2>🚀 SkyBet X</h2>
 
 <input id="user" placeholder="Username"><br>
-<input id="pass" placeholder="Password"><br>
+<input id="pass" type="password" placeholder="Password"><br>
 
-<button onclick="login()">Login</button>
-<button onclick="register()">Register</button>
+<button onclick="login()">Login / Register</button>
 </div>
+
+<script>
+function login(){
+  let u=user.value;
+  let p=pass.value;
+
+  if(localStorage.getItem(u)){
+    if(localStorage.getItem(u)==p){
+      localStorage.setItem("currentUser",u);
+      location="home.html";
+    }else{
+      alert("Wrong Password ❌");
+    }
+  }else{
+    localStorage.setItem(u,p);
+    localStorage.setItem(u+"_bal",0);
+    localStorage.setItem("currentUser",u);
+    alert("Account Created ✅");
+    location="home.html";
+  }
+}
+</script>
 
 </body>
 </html>
