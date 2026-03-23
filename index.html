@@ -1,111 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SkyBet X</title>
 
 <style>
 body{
-  margin:0;
-  font-family:Arial;
-  background:#000;
+  background:linear-gradient(135deg,#000,#0f2027,#2c5364);
   color:#fff;
-}
-
-.box{
-  width:300px;
-  margin:100px auto;
-  background:#111;
-  padding:20px;
-  border-radius:15px;
   text-align:center;
-  box-shadow:0 0 20px #00ffcc;
+  font-family:Arial;
 }
-
+.box{
+  margin-top:100px;
+}
 input{
-  width:90%;
-  padding:10px;
-  margin:8px;
+  padding:12px;
+  margin:10px;
+  width:80%;
   border:none;
   border-radius:5px;
 }
-
 button{
-  padding:10px;
-  border:none;
+  padding:12px;
+  width:85%;
+  margin:5px;
   background:#00ffcc;
+  border:none;
   border-radius:5px;
-  width:100%;
-}
-
-a{
-  color:#00ffcc;
-  cursor:pointer;
 }
 </style>
 
 <script>
-function showRegister(){
-  document.getElementById("login").style.display="none";
-  document.getElementById("register").style.display="block";
-}
-
-function showLogin(){
-  document.getElementById("login").style.display="block";
-  document.getElementById("register").style.display="none";
-}
-
 function register(){
-  let u=document.getElementById("ru").value;
-  let p=document.getElementById("rp").value;
+  let u=user.value;
+  let p=pass.value;
 
-  localStorage.setItem("user",u);
-  localStorage.setItem("pass",p);
+  localStorage.setItem(u,p);
+  localStorage.setItem(u+"_bal",0);
 
-  alert("Registered Successfully");
-  showLogin();
+  alert("Registered ✅");
 }
 
 function login(){
-  let u=document.getElementById("lu").value;
-  let p=document.getElementById("lp").value;
+  let u=user.value;
+  let p=pass.value;
 
-  let su=localStorage.getItem("user");
-  let sp=localStorage.getItem("pass");
-
-  if(u==su && p==sp){
+  if(localStorage.getItem(u)==p){
+    localStorage.setItem("currentUser",u);
     window.location="home.html";
   }else{
-    alert("Wrong Login");
+    alert("Wrong ❌");
   }
 }
 </script>
 
 </head>
-
 <body>
 
-<!-- LOGIN -->
-<div class="box" id="login">
-<h2>Login</h2>
+<div class="box">
+<h2>🚀 SkyBet X</h2>
 
-<input id="lu" placeholder="Username"><br>
-<input id="lp" type="password" placeholder="Password"><br>
+<input id="user" placeholder="Username"><br>
+<input id="pass" placeholder="Password"><br>
 
 <button onclick="login()">Login</button>
-
-<p>New user? <a onclick="showRegister()">Register</a></p>
-</div>
-
-<!-- REGISTER -->
-<div class="box" id="register" style="display:none;">
-<h2>Register</h2>
-
-<input id="ru" placeholder="Username"><br>
-<input id="rp" type="password" placeholder="Password"><br>
-
 <button onclick="register()">Register</button>
-
-<p>Already account? <a onclick="showLogin()">Login</a></p>
 </div>
 
 </body>
