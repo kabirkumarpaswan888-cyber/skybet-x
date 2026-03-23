@@ -1,99 +1,115 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard</title>
-  <style>
-    body {
-      margin: 0;
-      background: black;
-      color: white;
-      font-family: Arial;
-      text-align: center;
-    }
+<title>Home</title>
 
-    h1 {
-      padding: 20px;
-    }
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#000;
+  color:#fff;
+}
 
-    .games {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+.top{
+  background:#111;
+  padding:10px;
+  display:flex;
+  justify-content:space-between;
+}
 
-    .card {
-      width: 150px;
-      margin: 15px;
-      padding: 10px;
-      background: #111;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #000;
-      transition: 0.3s;
-    }
+.slider{
+  overflow:hidden;
+}
 
-    .card:hover {
-      transform: scale(1.1);
-    }
+.slides{
+  display:flex;
+  animation:slide 9s infinite;
+}
 
-    img {
-      width: 100%;
-      border-radius: 10px;
-    }
+.slide{
+  min-width:100%;
+  padding:40px;
+  text-align:center;
+  font-weight:bold;
+}
 
-    button {
-      margin-top: 10px;
-      padding: 8px;
-      border: none;
-      background: gold;
-      cursor: pointer;
-    }
+.s1{background:#ff0055;}
+.s2{background:#00ccff;}
+.s3{background:#00ff99;}
 
-    .cashout {
-      margin-top: 30px;
-    }
-  </style>
+@keyframes slide{
+  0%{margin-left:0;}
+  33%{margin-left:-100%;}
+  66%{margin-left:-200%;}
+  100%{margin-left:0;}
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  padding:10px;
+}
+
+.card{
+  background:#111;
+  padding:20px;
+  border-radius:10px;
+  text-align:center;
+  box-shadow:0 0 10px #00ffcc;
+}
+
+.play{
+  margin-top:10px;
+  background:#00ffcc;
+  padding:5px;
+  border-radius:5px;
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#111;
+  display:flex;
+  justify-content:space-around;
+  padding:10px;
+}
+</style>
+
 </head>
 
 <body>
 
-<h1>🎮 SkyBet X Games</h1>
+<div class="top">
+<div>💰 Balance: 0</div>
+<div>⚙</div>
+</div>
 
-<div class="games">
-
-  <div class="card">
-    <img src="https://via.placeholder.com/150">
-    <p>Game 1</p>
-    <button onclick="play()">Play</button>
+<div class="slider">
+  <div class="slides">
+    <div class="slide s1">🔥 Fast Withdraw</div>
+    <div class="slide s2">🎮 Play & Win</div>
+    <div class="slide s3">💸 Cashout</div>
   </div>
+</div>
 
-  <div class="card">
-    <img src="https://via.placeholder.com/150">
-    <p>Game 2</p>
-    <button onclick="play()">Play</button>
-  </div>
+<div class="grid">
 
-  <div class="card">
-    <img src="https://via.placeholder.com/150">
-    <p>Game 3</p>
-    <button onclick="play()">Play</button>
-  </div>
+<div class="card">Teen Patti<div class="play">Play</div></div>
+<div class="card">Andar Bahar<div class="play">Play</div></div>
+<div class="card">Roulette<div class="play">Play</div></div>
+<div class="card">Cricket<div class="play">Play</div></div>
 
 </div>
 
-<div class="cashout">
-  <h2>💰 Balance: ₹1000</h2>
-  <button onclick="cashout()">Cash Out</button>
+<div class="bottom">
+<div>🏠 Home</div>
+<div>🎮 Games</div>
+<div>💵 Cashout</div>
+<div>👤 Account</div>
 </div>
-
-<script>
-function play(){
-  alert("Game Start 🎮");
-}
-
-function cashout(){
-  alert("Cashout Successful 💸");
-}
-</script>
 
 </body>
 </html>
