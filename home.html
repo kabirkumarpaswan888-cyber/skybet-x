@@ -1,50 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home</title>
 
 <style>
 body{
   margin:0;
   font-family:Arial;
-  background:#000;
+  background: linear-gradient(135deg,#000,#0f2027,#2c5364);
   color:#fff;
 }
 
+/* TOP */
 .top{
-  background:#111;
   padding:10px;
   display:flex;
   justify-content:space-between;
+  background:#000;
 }
 
+/* SLIDER */
 .slider{
-  overflow:hidden;
-}
-
-.slides{
-  display:flex;
-  animation:slide 9s infinite;
-}
-
-.slide{
-  min-width:100%;
-  padding:40px;
+  padding:12px;
   text-align:center;
+  background: linear-gradient(45deg,#ff0055,#ff9900);
   font-weight:bold;
 }
 
-.s1{background:#ff0055;}
-.s2{background:#00ccff;}
-.s3{background:#00ff99;}
-
-@keyframes slide{
-  0%{margin-left:0;}
-  33%{margin-left:-100%;}
-  66%{margin-left:-200%;}
-  100%{margin-left:0;}
-}
-
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -53,30 +37,71 @@ body{
 }
 
 .card{
-  background:#111;
-  padding:20px;
-  border-radius:10px;
+  background:rgba(0,0,0,0.7);
+  padding:15px;
+  border-radius:12px;
   text-align:center;
-  box-shadow:0 0 10px #00ffcc;
+  box-shadow:0 0 15px #00ffcc;
+  transition:0.3s;
 }
 
-.play{
+.card:active{
+  transform:scale(0.95);
+}
+
+button{
   margin-top:10px;
-  background:#00ffcc;
-  padding:5px;
+  padding:8px;
+  border:none;
   border-radius:5px;
+  background:#00ffcc;
+  width:100%;
 }
 
+/* GAME POPUP */
+.gameBox{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+.close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* bottom nav */
 .bottom{
   position:fixed;
   bottom:0;
   width:100%;
-  background:#111;
+  background:#000;
   display:flex;
   justify-content:space-around;
   padding:10px;
 }
 </style>
+
+<script>
+function openGame(name){
+  document.getElementById("gameBox").style.display="flex";
+  document.getElementById("gname").innerText=name;
+}
+
+function closeGame(){
+  document.getElementById("gameBox").style.display="none";
+}
+</script>
 
 </head>
 
@@ -87,21 +112,57 @@ body{
 <div>⚙</div>
 </div>
 
-<div class="slider">
-  <div class="slides">
-    <div class="slide s1">🔥 Fast Withdraw</div>
-    <div class="slide s2">🎮 Play & Win</div>
-    <div class="slide s3">💸 Cashout</div>
-  </div>
-</div>
+<div class="slider">🔥 Fast Withdraw | 🎮 Play & Win</div>
 
 <div class="grid">
 
-<div class="card">Teen Patti<div class="play">Play</div></div>
-<div class="card">Andar Bahar<div class="play">Play</div></div>
-<div class="card">Roulette<div class="play">Play</div></div>
-<div class="card">Cricket<div class="play">Play</div></div>
+<div class="card">
+Teen Patti
+<button onclick="openGame('Teen Patti')">Play</button>
+</div>
 
+<div class="card">
+Andar Bahar
+<button onclick="openGame('Andar Bahar')">Play</button>
+</div>
+
+<div class="card">
+Roulette
+<button onclick="openGame('Roulette')">Play</button>
+</div>
+
+<div class="card">
+Cricket
+<button onclick="openGame('Cricket')">Play</button>
+</div>
+
+<div class="card">
+Aviator ✈
+<button onclick="openGame('Aviator')">Play</button>
+</div>
+
+<div class="card">
+Dragon vs Tiger 🐉
+<button onclick="openGame('Dragon vs Tiger')">Play</button>
+</div>
+
+<div class="card">
+Chicken Road 🐔
+<button onclick="openGame('Chicken Road')">Play</button>
+</div>
+
+<div class="card">
+Chicken Road 2 🐔
+<button onclick="openGame('Chicken Road 2')">Play</button>
+</div>
+
+</div>
+
+<!-- GAME SCREEN -->
+<div class="gameBox" id="gameBox">
+<div class="close" onclick="closeGame()">❌</div>
+<h2 id="gname"></h2>
+<p>Game Loading...</p>
 </div>
 
 <div class="bottom">
@@ -112,4 +173,4 @@ body{
 </div>
 
 </body>
-</html>
+  </html>
