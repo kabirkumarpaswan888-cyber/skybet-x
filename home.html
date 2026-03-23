@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home</title>
 
 <style>
 body{
@@ -13,16 +12,10 @@ body{
 }
 
 .top{
-  padding:10px;
   display:flex;
   justify-content:space-between;
-  background:#000;
-}
-
-.slider{
   padding:10px;
-  text-align:center;
-  background:linear-gradient(45deg,#ff0057,#ff7b00);
+  background:#000;
 }
 
 .grid{
@@ -37,108 +30,107 @@ body{
   padding:15px;
   border-radius:10px;
   text-align:center;
+  animation:pop 0.5s;
 }
 
 button{
-  padding:8px;
+  padding:10px;
   width:100%;
   margin-top:5px;
-  background:#00ffcc;
   border:none;
   border-radius:5px;
+  background:#00ff99;
 }
 
-.bottom{
+button:hover{
+  transform:scale(1.05);
+}
+
+@keyframes pop{
+  from{transform:scale(0.8); opacity:0;}
+  to{transform:scale(1);}
+}
+
+#depositBox{
+  display:none;
   position:fixed;
-  bottom:0;
+  top:0;
   width:100%;
-  background:#000;
-  display:flex;
-  justify-content:space-around;
-  padding:10px;
+  height:100%;
+  background:#000000dd;
+  text-align:center;
+  padding-top:100px;
 }
 </style>
-
-<script>
-let user = localStorage.getItem("currentUser");
-let bal = localStorage.getItem(user+"_bal") || 0;
-
-function update(){
-  document.getElementById("bal").innerText=bal;
-}
-window.onload=update;
-
-function logout(){
-  window.location="index.html";
-}
-
-function deposit(){
-  let amt=prompt("Enter Amount");
-  localStorage.setItem("deposit_"+user,amt);
-  alert("Request Sent");
-}
-
-function withdraw(){
-  let amt=prompt("Enter Amount");
-  localStorage.setItem("withdraw_"+user,amt);
-  alert("Withdraw Request Sent");
-}
-
-/* GAME SYSTEM */
-function play(type){
-  let r=Math.random();
-
-  if(type=="aviator"){
-    r>0.5 ? updateBal(20,"🚀 Win ₹20") : updateBal(-10,"💥 Crash Lose ₹10");
-  }
-  if(type=="dragon"){
-    r>0.5 ? updateBal(15,"🐉 Win ₹15") : updateBal(-10,"🐯 Lose ₹10");
-  }
-  if(type=="chicken"){
-    r>0.5 ? updateBal(10,"🐔 Win ₹10") : updateBal(-5,"Lose ₹5");
-  }
-  if(type=="chicken2"){
-    r>0.5 ? updateBal(12,"🐔2 Win ₹12") : updateBal(-6,"Lose ₹6");
-  }
-}
-
-function updateBal(a,msg){
-  bal = Number(bal)+a;
-  localStorage.setItem(user+"_bal",bal);
-  update();
-  alert(msg);
-}
-</script>
-
 </head>
 
 <body>
 
 <div class="top">
-<div>💰 Balance: ₹<span id="bal">0</span></div>
+<div>💰 ₹<span id="bal">0</span></div>
 <div onclick="logout()">Logout</div>
 </div>
 
-<div class="slider">🔥 Fast Withdraw</div>
-
-<button onclick="deposit()">💸 Deposit</button>
-<button onclick="withdraw()">💵 Withdraw</button>
+<button onclick="deposit()">Deposit</button>
+<button onclick="withdraw()">Withdraw</button>
 
 <div class="grid">
-
-<div class="card">Aviator<button onclick="play('aviator')">Play</button></div>
-<div class="card">Dragon vs Tiger<button onclick="play('dragon')">Play</button></div>
-<div class="card">Chicken Road<button onclick="play('chicken')">Play</button></div>
-<div class="card">Chicken Road 2<button onclick="play('chicken2')">Play</button></div>
-
+<div class="card">Aviator<button onclick="play()">Play</button></div>
+<div class="card">Dragon<button onclick="play()">Play</button></div>
+<div class="card">Chicken<button onclick="play()">Play</button></div>
+<div class="card">Chicken 2<button onclick="play()">Play</button></div>
 </div>
 
-<div class="bottom">
-<div>🏠 Home</div>
-<div>🎮 Games</div>
-<div>💰 Cashout</div>
-<div>👤 Account</div>
+<div id="depositBox">
+<h2>Scan & Pay</h2>
+<img src="YOUR_QR_LINK" width="200"><br><br>
+<button onclick="confirmDeposit()">I Paid</button>
+<button onclick="closeDeposit()">Close</button>
 </div>
+
+<script>
+
+let user=localStorage.getItem("currentUser");
+let bal=localStorage.getItem(user+"_bal")||0;
+
+function update(){document.getElementById("bal").innerText=bal;}
+update();
+
+function logout(){location="index.html";}
+
+function deposit(){depositBox.style.display="block";}
+function closeDeposit(){depositBox.style.display="none";}
+
+function confirmDeposit(){
+  let amt=prompt("Amount Paid");
+  localStorage.setItem("deposit_"+user,amt);
+  alert("Sent to admin");
+}
+
+function withdraw(){
+  let amt=prompt("Withdraw Amount");
+  localStorage.setItem("withdraw_"+user,amt);
+  alert("Request sent");
+}
+
+function play(){
+  let bet=prompt("Bet Amount");
+
+  if(bet>bal){alert("Low Balance");return;}
+
+  if(Math.random()>0.5){
+    bal=Number(bal)+Number(bet);
+    alert("Win 🎉");
+  }else{
+    bal=bal-bet;
+    alert("Lose ❌");
+  }
+
+  localStorage.setItem(user+"_bal",bal);
+  update();
+}
+
+</script>
 
 </body>
-  </html>
+</html>                                                                 </html>
