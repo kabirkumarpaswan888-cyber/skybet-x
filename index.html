@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SkyBet X</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+
+  <h1>🔐 SkyBet X Login</h1>
+
+  <input type="text" id="username" placeholder="Username"><br><br>
+  <input type="password" id="password" placeholder="Password"><br><br>
+
+  <button onclick="login()">Login</button>
+
+</div>
+
+
+<!-- GAME PAGE -->
+<div id="gamePage" style="display:none;">
+
+  <h1>🚀 SkyBet X</h1>
+
+  <h3 id="wallet">Balance: 1000</h3>
+
+  <div class="bet-box">
+    <input type="number" id="betAmount" placeholder="Enter Bet">
+    <button onclick="startGame()">BET</button>
+  </div>
+
+  <canvas id="gameCanvas" width="320" height="200"></canvas>
+
+  <h2 id="multiplier">1.00x</h2>
+
+  <button class="cash" onclick="cashOut()">CASH OUT</button>
+
+  <br><br>
+  <button onclick="addMoney()">Add ₹500</button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+<p>New user?</p>
+<button onclick="showRegister()">Register</button>
+
+<div id="registerPage" style="display:none;">
+
+  <h1>📝 Register</h1>
+
+  <input type="text" id="newUser" placeholder="New Username"><br><br>
+  <input type="password" id="newPass" placeholder="New Password"><br><br>
+
+  <button onclick="register()">Create Account</button>
+  <br><br>
+  <button onclick="showLogin()">Back to Login</button>
+
+</div>
